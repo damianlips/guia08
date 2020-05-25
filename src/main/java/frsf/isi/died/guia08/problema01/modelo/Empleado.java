@@ -72,6 +72,9 @@ public class Empleado {
 		}
 		
 	}
+	public Tipo getTipo() {
+		return this.tipo;
+	}
 	
 	public Long contarPendientes () {
 		if(tareasAsignadas==null) return 0l;
@@ -214,5 +217,21 @@ public class Empleado {
 	
 	public String getNombre() {
 		return nombre;
+	}
+
+	public Double getCostoHora() {
+		return costoHora;
+	}
+
+	public void setCostoHora(Double costoHora) {
+		this.costoHora = costoHora;
+	}
+
+	public List<Tarea> getTareasAsignadas() {
+		return tareasAsignadas;
+	}
+
+	public void setTareasAsignadas(List<Tarea> tareasAsignadas) {
+		this.tareasAsignadas = tareasAsignadas;
 	} 
 }

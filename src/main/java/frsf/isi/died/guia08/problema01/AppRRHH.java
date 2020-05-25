@@ -145,11 +145,9 @@ public class AppRRHH {
 				this.asignarTarea(cuil, idTarea, descripcion, duracionEstimada);
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se encontro el archivo csv");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Error al recuperar los datos, intente nuevamente");
 		}
 	}
 	
@@ -158,7 +156,7 @@ public class AppRRHH {
 		// y todavía no fueron facturadas
 		// y el nombre y cuil del empleado que la finalizó en formato CSV 
 		
-			try(BufferedWriter out = new BufferedWriter(new FileWriter("tareas.csv",true))){
+			try(BufferedWriter out = new BufferedWriter(new FileWriter("src\tareas.csv",true))){
 				List<Tarea> tareas = tareasTerminadas();
 				for(Tarea t : tareas)
 					out.write(t.asCsv() +  System.getProperty("line.separator"));
@@ -194,6 +192,14 @@ public class AppRRHH {
 		return this.empleados.stream()				
 				.mapToDouble(e -> e.salario())
 				.sum();
+	}
+
+	public List<Empleado> getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(List<Empleado> empleados) {
+		this.empleados = empleados;
 	}
 	
 	

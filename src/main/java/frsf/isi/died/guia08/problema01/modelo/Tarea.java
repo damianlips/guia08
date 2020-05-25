@@ -48,7 +48,7 @@ public class Tarea {
 	}
 	
 	public boolean sosVos(Integer idd) {
-		return (idd.intValue()==(this.id));
+		return idd==id ;
 	}
 	
 	
