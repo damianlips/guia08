@@ -53,12 +53,10 @@ public class AppRRHHTest {
 	@Test
 	public void testCargarEmpleadosCSV() {
 		a.cargarEmpleadosContratadosCSV("src\\testContratados.csv");
-//		a.cargarEmpleadosContratadosCSV("D:\\DAMIAN\\EclipseWorkspace\\eclipse-workspace\\guia08\\src\\test\\java\\frsf\\isi\\died\\guia08\\problema01\\testContratados.csv");
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50);
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==222 && e.getNombre().equals("Federico Yust") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==10);
-//		a.cargarEmpleadosEfectivosCSV("D:\\DAMIAN\\EclipseWorkspace\\eclipse-workspace\\guia08\\src\\test\\java\\frsf\\isi\\died\\guia08\\problema01\\testEfectivos.csv");
 		a.cargarEmpleadosEfectivosCSV("src\\testEfectivos.csv");
 		e=a.getEmpleados().get(2);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
@@ -95,7 +93,7 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue((t.getId()==555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		t=e.getTareasAsignadas().get(0);
@@ -113,7 +111,7 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue((t.getId()==555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		assertTrue(e.getTareasAsignadas()==null);
@@ -131,7 +129,7 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue((t.getId()==555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		t=e.getTareasAsignadas().get(0);
@@ -155,7 +153,7 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue((t.getId()==555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		assertTrue(e.getTareasAsignadas()==null);
