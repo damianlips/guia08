@@ -2,14 +2,20 @@ package frsf.isi.died.guia08.problema01;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import frsf.isi.died.guia08.problema01.modelo.Empleado;
 import frsf.isi.died.guia08.problema01.modelo.Tarea;
+import frsf.isi.died.guia08.problema01.modelo.Empleado.TareaNoExisteException;
 import frsf.isi.died.guia08.problema01.modelo.Empleado.Tipo;
 
 
@@ -157,21 +163,11 @@ public class AppRRHHTest {
 	}
 	
 	@Test
-	public void cargarTareasCSV() {
+	public void testCargarTareasCSV() {
 		a.cargarEmpleadosContratadosCSV("src\\testContratados.csv");
 		a.cargarEmpleadosEfectivosCSV("src\\testEfectivos.csv");
 		a.cargarTareasCSV("src\\testTareasCSV.csv");
-		
-		for(Empleado e : a.getEmpleados()) {
-			System.out.println(e);
-			if(e.getTareasAsignadas()==null) System.out.println(e + " no tiene tareas asignadas");
-			else {
-				for(Tarea t: e.getTareasAsignadas()) {
-					System.out.println(t.getDescripcion());
-				}
-			}
-		}
-		
+
 		e=a.getEmpleados().get(0);
 		assertTrue(e.sosVos(111) && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50);
 		t=e.getTareasAsignadas().get(0);
@@ -181,7 +177,6 @@ public class AppRRHHTest {
 		
 		
 		e=a.getEmpleados().get(1);
-//		assertTrue(e.getCuil()==222 && e.getNombre().equals("Federico Yust") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==10);
 		assertTrue(e.sosVos(222) && e.getNombre().equals("Federico Yust") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==10);
 		t=e.getTareasAsignadas().get(0);
 
@@ -199,14 +194,75 @@ public class AppRRHHTest {
 		assertTrue(e.getTareasAsignadas()==null);
 		
 	}
-	/*
+	
 	@Test
-	public void javaNoSirve() {
+	public void testGuardarTareasTerminadasCSV() {
 		a.cargarEmpleadosContratadosCSV("src\\testContratados.csv");
-		e=a.getEmpleados().get(1);
-		assertTrue(e.getCuil()==222);
-		assertFalse(e.sosVos(222));
+		a.cargarEmpleadosEfectivosCSV("src\\testEfectivos.csv");
+		a.cargarTareasCSV("src\\testTareasCSV.csv");
+		DateTimeFormatter f = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+		Boolean falla=false, falla2=false;
+
+		e=a.getEmpleados().get(0);
+		try {
+			e.comenzar(777, LocalDateTime.now().minusDays(2).format(f));
+			e.comenzar(555, LocalDateTime.now().minusDays(2).format(f));
+			e.finalizar(777);
+			e.finalizar(555);
+			e.buscar(555).setFacturada(true);
+			e=a.getEmpleados().get(2);
+			e.comenzar(666, LocalDateTime.now().minusDays(2).format(f));
+			e.finalizar(666);
+			e=a.getEmpleados().get(1);
+			e.comenzar(888, LocalDateTime.now().minusDays(2).format(f));
+		} catch (TareaNoExisteException e1) {
+			falla=true;
+		}
 		
+		a.guardarTareasTerminadasCSV();
+		
+		
+		try(BufferedReader in = new BufferedReader(new FileReader("src\\tareas.csv"))){
+			String fila = null;
+				fila=in.readLine();
+				String[] linea = fila.split(";");
+				Integer idTarea = Integer.valueOf(linea[0]);
+				String descripcion = linea[1];
+				Integer duracionEstimada = Integer.valueOf(linea[2]);
+				Integer cuil = Integer.valueOf(linea[3]);
+				String nombre = linea[4];
+				if(! ((idTarea==777 && descripcion.equals("Lavar los platos") && duracionEstimada==7 && cuil==111 && nombre.equals("Damian Lipschitz"))
+						||
+						(idTarea==666 && descripcion.equals("Limpiar el baño") && duracionEstimada==5 && cuil==123 && nombre.equals("Federico Quijada"))	)
+				)
+					falla2=true;
+				fila=in.readLine();
+				linea = fila.split(";");
+				if(Integer.valueOf(linea[0])==idTarea) falla2=true;
+				else {
+					idTarea = Integer.valueOf(linea[0]);
+					descripcion = linea[1];
+					duracionEstimada = Integer.valueOf(linea[2]);
+					cuil = Integer.valueOf(linea[3]);
+					nombre = linea[4];
+					if(! ((idTarea==777 && descripcion.equals("Lavar los platos") && duracionEstimada==7 && cuil==111 && nombre.equals("Damian Lipschitz"))
+							||
+							(idTarea==666 && descripcion.equals("Limpiar el baño") && duracionEstimada==5 && cuil==123 && nombre.equals("Federico Quijada"))	)
+					)
+						falla2=true;
+				}
+				
+				
+				
+						assertFalse(falla);
+						assertFalse(falla2);
+		} catch (FileNotFoundException e) {
+			falla=true;
+		} catch (IOException e) {
+			falla=true;
+		}
+		assertFalse(falla);
+
 	}
-	*/
+	
 }

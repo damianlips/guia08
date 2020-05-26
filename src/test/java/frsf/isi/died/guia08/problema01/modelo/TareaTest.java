@@ -24,6 +24,12 @@ public class TareaTest {
 		e2= new Empleado(222, "Federico Yust", Tipo.EFECTIVO, 10d);
 	}
 	
+	@Test
+	public void sosVosTest() {
+		assertTrue(t.sosVos(123));
+		assertTrue(t1.sosVos(234));
+	}
+	
 
 	@Test
 	public void asignarEmpleadoTest() {

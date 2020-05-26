@@ -151,12 +151,12 @@ public class AppRRHH {
 		}
 	}
 	
-	private void guardarTareasTerminadasCSV() {
+	public void guardarTareasTerminadasCSV() {
 		// guarda una lista con los datos de la tarea que fueron terminadas
 		// y todavía no fueron facturadas
 		// y el nombre y cuil del empleado que la finalizó en formato CSV 
 		
-			try(BufferedWriter out = new BufferedWriter(new FileWriter("src\tareas.csv",true))){
+			try(BufferedWriter out = new BufferedWriter(new FileWriter("src\\tareas.csv",true))){
 				List<Tarea> tareas = tareasTerminadas();
 				for(Tarea t : tareas)
 					out.write(t.asCsv() +  System.getProperty("line.separator"));

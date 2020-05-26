@@ -202,7 +202,8 @@ public class EmpleadoTest {
 			b1=false;
 		}
 		b2=e1.asignarTarea(t2);
-		assertTrue(b2 && b1);
+		assertTrue(b2);
+		assertTrue(b1);
 	}
 
 	@Test

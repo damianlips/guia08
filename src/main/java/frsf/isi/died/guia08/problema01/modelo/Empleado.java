@@ -34,7 +34,7 @@ public class Empleado {
 		}
 	}
 	public boolean sosVos(Integer cuil) {
-		return (cuil==this.cuil);
+		return (cuil.equals(this.cuil));
 	}
 	
 	public Empleado(Integer cuil, String nombre, Tipo tipo, Double costoHora) {

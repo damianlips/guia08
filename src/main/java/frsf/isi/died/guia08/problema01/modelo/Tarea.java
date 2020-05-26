@@ -48,7 +48,7 @@ public class Tarea {
 	}
 	
 	public boolean sosVos(Integer idd) {
-		return idd==id ;
+		return idd.equals(id) ;
 	}
 	
 	
@@ -126,7 +126,8 @@ public class Tarea {
 	}
 	
 	public String asCsv() {
-		return this.id+ ";\""+ this.descripcion+"\";"+this.duracionEstimada+"\";" + this.empleadoAsignado.getCuil() +"\";" + this.empleadoAsignado.getNombre();
+		//return this.id + ";\"" + this.descripcion + "\";" + this.duracionEstimada + "\";" + this.empleadoAsignado.getCuil() + "\";" + this.empleadoAsignado.getNombre();
+		return this.id + ";" + this.descripcion + ";" + this.duracionEstimada + ";" + this.empleadoAsignado.getCuil() + ";" + this.empleadoAsignado.getNombre();
 	}
 	
 }
