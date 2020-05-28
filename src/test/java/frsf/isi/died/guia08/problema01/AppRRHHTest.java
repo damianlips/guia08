@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -93,11 +94,11 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && (Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		t=e.getTareasAsignadas().get(0);
-		assertTrue((t.getId()==666) && t.getDescripcion().equals("Limpiar el baño") && t.getDuracionEstimada()==5 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue((t.getId()==666) && t.getDescripcion().equals("Limpiar el baño") && t.getDuracionEstimada()==5 && (Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1));
 		
 	}
 	
@@ -111,7 +112,7 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && (Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		assertTrue(e.getTareasAsignadas()==null);
@@ -129,17 +130,17 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && (Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		t=e.getTareasAsignadas().get(0);
-		assertTrue((t.getId()==666) && t.getDescripcion().equals("Limpiar el baño") && t.getDuracionEstimada()==5 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue((t.getId()==666) && t.getDescripcion().equals("Limpiar el baño") && t.getDuracionEstimada()==5 && (Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1));
 		
 		a.terminarTarea(111, 555);
 		a.terminarTarea(123, 666);
-		assertTrue(t.getFechaFin().equals(LocalDateTime.now()));
+		assertTrue((Duration.between(t.getFechaFin(), LocalDateTime.now()).toSeconds()<1));
 		t = a.getEmpleados().get(0).getTareasAsignadas().get(0);
-		assertTrue(t.getFechaFin().equals(LocalDateTime.now()));
+		assertTrue((Duration.between(t.getFechaFin(), LocalDateTime.now()).toSeconds()<1));
 		
 	}
 	
@@ -153,7 +154,7 @@ public class AppRRHHTest {
 		e=a.getEmpleados().get(0);
 		assertTrue(e.getCuil()==111 && e.getNombre().equals("Damian Lipschitz") && e.getTipo()==Tipo.CONTRATADO && e.getCostoHora()==50 );
 		t=e.getTareasAsignadas().get(0);
-		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && t.getFechaInicio().equals(LocalDateTime.now()));
+		assertTrue(t.sosVos(555) && t.getDescripcion().equals("Sacar la basura") && t.getDuracionEstimada()==1 && (Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1));
 		e=a.getEmpleados().get(1);
 		assertTrue(e.getCuil()==123 && e.getNombre().equals("Federico Quijada") && e.getTipo()==Tipo.EFECTIVO && e.getCostoHora()==20);
 		assertTrue(e.getTareasAsignadas()==null);

@@ -2,6 +2,7 @@ package frsf.isi.died.guia08.problema01.modelo;
 
 import static org.junit.Assert.*;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import org.junit.Before;
@@ -215,8 +216,8 @@ public class EmpleadoTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals(t.getFechaInicio() , LocalDateTime.now());
-	}
+		assertTrue(Duration.between(t.getFechaInicio(), LocalDateTime.now()).toSeconds()<1);	
+		}
 
 	@Test
 	public void testFinalizarInteger() {
@@ -228,7 +229,7 @@ public class EmpleadoTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals(t.getFechaFin() , LocalDateTime.now());
+		assertTrue(Duration.between(t.getFechaFin(), LocalDateTime.now()).toSeconds()<1);
 	}
 	
 	@Test
